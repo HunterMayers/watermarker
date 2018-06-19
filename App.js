@@ -53,7 +53,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-
     this.watchID = navigator.geolocation.watchPosition(
       (position) => {
         let region = {
@@ -113,20 +112,6 @@ export default class App extends React.Component {
     );
   }
 }
-
-/*
-<MapView.Marker
-title={'Hi'}
-style={{
-  width: 20,
-  height: 20,
-  transform: [{ rotate: `${angle}deg` }]
-}}
-coordinate={{
-  latitude: this.state.lastLatitude,
-  longitude: this.state.lastLongitude
-}}/>
-*/
 
 const styles = StyleSheet.create({
   container: {
