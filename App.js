@@ -15,7 +15,7 @@ export default class App extends React.Component {
     error: null,
     markers: [
       {
-        title: 'hello',
+        title: 'example',
         coordinates: {
           latitude: 19.6400,
           longitude: -155.9969
@@ -65,7 +65,6 @@ export default class App extends React.Component {
       },
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 0, distanceFilter: 1}
-
     );
   }
 
@@ -94,13 +93,13 @@ export default class App extends React.Component {
         </MapView>
         {/* Rest of the app comes ABOVE the action button component !*/}
         <ActionButton size={40} position="left" buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' title="Marlin" onPress={() => console.log("notes tapped!")}>
+          <ActionButton.Item buttonColor='#154360' title="Marlin" onPress={() => this.addMarker('marlin', '#154360')}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#9b59b6' title="Ahi" onPress={() => console.log("notes tapped!")}>
+          <ActionButton.Item buttonColor='#D0D3D4' title="Ahi" onPress={() => this.addMarker('ahi', '#D0D3D4')}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="Mahi-Mahi" onPress={() => {}}>
+          <ActionButton.Item buttonColor='#fbff33' title="Mahi-Mahi" onPress={() => this.addMarker('mahi-mahi', '#fbff33')}>
             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#f39c12' title="Ono" onPress={() => this.addMarker('ono', '#f39c12')}>
@@ -108,7 +107,6 @@ export default class App extends React.Component {
           </ActionButton.Item>
         </ActionButton>
       </View>
-
     );
   }
 }
