@@ -9,6 +9,7 @@ const LONGITUDE_DELTA = 0.01;
 
 export default class App extends React.Component {
   state = {
+    accountName: 'John Doe',
     currentRegion: null,
     lastLatitude: 0,
     lastLongitude: 0,
@@ -21,13 +22,14 @@ export default class App extends React.Component {
           longitude: -155.9969
         },
         color: 'blue',
+        date: new Date(2018, 5, 18),
       }
     ]
   }
 
   watchID: ?number = null
 
-  addMarker = (p_title, p_color) => {
+  addMarker = (p_title, p_color, p_date) => {
     let curMarker = {
       title: p_title,
       coordinates: {
@@ -35,6 +37,7 @@ export default class App extends React.Component {
         longitude: this.state.lastLongitude
       },
       color: p_color,
+      date: p_date,
     }
     this.setState({ markers: [...this.state.markers, curMarker] });
     console.log(this.state.markers);
@@ -88,21 +91,22 @@ export default class App extends React.Component {
             coordinate={marker.coordinates}
             title={marker.title}
             pinColor={marker.color}
+            description={marker.date.toString()}
             />
           ))}
         </MapView>
         {/* Rest of the app comes ABOVE the action button component !*/}
         <ActionButton size={40} position="left" buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#154360' title="Marlin" onPress={() => this.addMarker('marlin', '#154360')}>
+          <ActionButton.Item buttonColor='#154360' title="Marlin" onPress={() => this.addMarker('Marlin ' + '-' + this.state.accountName, '#154360', new Date())}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#D0D3D4' title="Ahi" onPress={() => this.addMarker('ahi', '#D0D3D4')}>
+          <ActionButton.Item buttonColor='#D0D3D4' title="Ahi" onPress={() => this.addMarker('Ahi ' + '-' + this.state.accountName ,'#D0D3D4', new Date())}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#fbff33' title="Mahi-Mahi" onPress={() => this.addMarker('mahi-mahi', '#fbff33')}>
+          <ActionButton.Item buttonColor='#fbff33' title="Mahi-Mahi" onPress={() => this.addMarker('Mahi-Mahi ' + '-' + this.state.accountName, '#fbff33', new Date())}>
             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#f39c12' title="Ono" onPress={() => this.addMarker('ono', '#f39c12')}>
+          <ActionButton.Item buttonColor='#f39c12' title="Ono" onPress={() => this.addMarker('Ono ' + '-' + this.state.accountName, '#f39c12', new Date())}>
             <Icon name="md-done-all" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
